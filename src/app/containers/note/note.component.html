@@ -1,0 +1,27 @@
+<div *ngIf="!trashedNotes && !archiveNotes">
+    <app-createnotes></app-createnotes> 
+    
+    <div *ngIf = "pinnedNotes && pinned.length>0">
+        <div class="label" >PINNED</div></div>
+        <div fxLayout={{view}} fxLayoutGap="10px" >
+            <div fxLayout="row wrap" fxLayoutGap="10px" >
+        <div *ngFor="let note of pinned | note:searchNotes" >
+            <app-note [note]="note"></app-note>
+        </div>
+        </div>
+        </div>
+    
+    </div>
+            <div *ngIf="archiveNotes"></div>
+            <div *ngIf="trashedNotes"></div>
+            <div *ngIf="!trashedNotes && !archiveNotes">
+                <div *ngIf="pinned.length>0">
+            <div class="label" >OTHERS</div></div></div>
+    
+            <div class="container"  fxLayout="column wrap" fxLayout.xs="coloum wrap" >
+             <div fxLayout={{view}} fxLayoutGap="10px" >
+    <div *ngFor="let note of notes | note:searchNotes">
+        <app-note [note]="note"></app-note>
+    </div>
+    </div>
+    </div>

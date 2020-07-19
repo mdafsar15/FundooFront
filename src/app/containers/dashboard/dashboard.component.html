@@ -1,0 +1,300 @@
+<div fxLayoutAlign="space around centre" fxLayout="column" fxFlex="100" class="imp">
+  <link
+    href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+    rel="stylesheet"
+  />
+  <div fxLayoutAlign="space around center" fxLayout="column">
+    <form>
+      <div fxLayout="column">
+        <div
+          class="app-bar"
+          fxLayout="column"
+          fxLayoutAlign="space-around center"
+        >
+          <mat-toolbar class="toolbar">
+            <div>
+              <button
+                type="button"
+                class="button"
+                mat-button
+                (click)="drawer.toggle()"
+                matTooltip="Main Menu"
+              >
+                <mat-icon matSuffix>menu</mat-icon>
+              </button>
+            </div>
+
+            <img
+              class="gb_la gb_ae"
+              alt=""
+              aria-hidden="true"
+              src="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png"
+              srcset="
+                https://www.gstatic.com/images/branding/product/1x/keep_48dp.png 1x,
+                https://www.gstatic.com/images/branding/product/2x/keep_48dp.png 2x
+              "
+              style="width:40px;height:40px"
+            />
+
+            <div>Fundoo</div>
+
+            <div class="searchmain">
+              <mat-card class="div-search" routerLinkActive="active">
+                <button mat-icon-button class="searchButton">
+                  <mat-icon>search</mat-icon>
+                </button>
+
+                <div>
+                  <input
+                    type="text"
+                    class="resizedTextbox"
+                    matInput
+                    placeholder="Search" 
+                    [(ngModel)]="title"
+                    (input)="searchNote()">
+                </div>
+                <button mat-icon-button class="searchButton">
+                  <mat-icon>clear</mat-icon>
+                </button>
+              </mat-card>
+            </div>
+
+            <div class="lastComponents" fxLayoutAlign="column">
+              <div class="refreshButton" role="button" >
+                <button mat-icon-button (click)="refresh()" matTooltip="Refresh" >
+                  <mat-icon style="
+                  margin-left: 769%;
+              "
+              >refresh</mat-icon>
+                </button>
+              </div>
+              <button mat-icon-button *ngIf="view" matTooltip="Grid View" (click)="getView()">
+                <mat-icon style="margin-left: 747%;">view_module</mat-icon>
+              </button>
+              <button mat-icon-button *ngIf="!view" matTooltip="List View" (click)="getView()">
+                <mat-icon style="margin-left: 747%;"> view_agenda</mat-icon>
+              </button>
+              <!-- <div class="settingButton" role="button">
+                <button mat-icon-button matTooltip="Settings">
+                  <mat-icon fontSet="material-icons-outlined"
+              
+                    >settings</mat-icon
+                  >
+                </button>
+              </div> -->
+
+              <div class="appsButton" role="button">
+                <button mat-icon-button matTooltip="Google Apps">
+                  <mat-icon fontSet="material-icons-outlined">apps</mat-icon>
+                </button>
+              </div>
+            </div>
+<!-- 
+            <div style="width:10em;">
+              <mat-menu
+                #vertebrates="matMenu"
+                class="menuStyle"
+                style="width:auto"
+              > -->
+                 <!-- <div class="div-profilepic">
+                  <div class="image-upload">
+                    <label for="file-input">
+                      <img
+                        src="../../../assets/googlekeepicon.png"
+                        style="height: 110px;width: 110px; padding: 0px;margin: 0px;"
+                      />
+                    </label>
+                    <input id="file-input" type="file" />
+                  </div>
+                </div>  -->
+                 <!-- <div class="profile-content">
+                  <div>
+                    <h3 style="color: rgb(65, 64, 64);">{{ name }}</h3>
+                    <h4 style="color: rgb(71, 82, 94);">{{ uName }}</h4>
+                  </div>
+                </div>  -->
+
+                <!-- <div class="div-profile">
+                  <div class="div-signout">
+                    <button
+                      [routerLink]="['']"
+                      (click)="onClickClear()"
+                      mat-button
+                      class="signout-button"
+                    >
+                      Signout
+                    </button>
+                  </div>
+                </div> -->
+              <!-- </mat-menu>
+            </div> -->
+
+            <!-- <div> -->
+              <!-- <button mat-icon-button [matMenuTriggerFor]="menu">
+                <img
+                  mat-card-avatar
+                  src="{{ profilePicUser }}"
+                  class="profile1"
+                />
+              </button> -->
+
+              
+      <div class="signout">
+        <button mat-button [matMenuTriggerFor]="beforeMenu"><img src="..\assets\images\profile.jpg" alt="Avatar"  style="border-radius: 50%;" class="profilepic" ></button>
+        <mat-menu #beforeMenu="matMenu" xPosition="before">
+          <div>
+              <mat-card class="example-card">
+                <div class="profilediv">
+                  <img src="..\assets\images\profile.jpg" alt="Avatar"  style="border-radius: 50%;" class="profilepic" >
+              </div>
+                <div class="header">
+                    <mat-card-header>
+                      <mat-card-title style="margin-left: 55px;">User</mat-card-title>
+                      <mat-card-subtitle>{{getEmail()}}</mat-card-subtitle>
+                    </mat-card-header>
+                  </div>
+                  </mat-card>
+                </div>
+                <div class="signout-button">
+                <button (click)="logout()" mat-stroked-button color="primary" >Signout</button>
+              </div>
+    </mat-menu>
+  </div>
+
+              <!-- <mat-menu #menu="matMenu"> -->
+                <!-- <div
+                  fxLayout="row"
+                  fxFlex="100"
+                  fxLayoutAlign="space-between center"
+                >
+                  <mat-card style="overflow: hidden">
+                    <div class="image-container" style="padding-top: 13%;"
+                    >
+                  
+                    </div>
+                    <div>
+                      <img
+                        class="topic-avatar"
+                        mat-card-avatar
+                        src="{{ profilePicUser }}"
+                      />
+                      <label class="btn-upload">
+                        <input
+                          type="file"
+                          name="fileupload"
+                          (change)="onFileSelected($event)"
+                        />
+                        <button class="btn">Change</button>
+                      </label>
+                    </div>
+
+                    <div class="name">{{ fname | uppercase }}</div>
+                    <div class="email">{{ email }}</div>
+                  </mat-card>
+                </div> -->
+                <mat-divider></mat-divider>
+
+                <!-- <div
+                  fxLayout="row"
+                  fxFlex="100"
+                  fxLayoutAlign="space-around  center"
+                >
+                  <button mat-raised-button (click)="logout()" style="
+                  margin-left: 74px;
+              ">Sign out</button>
+                </div> -->
+              <!-- </mat-menu>
+            </div> -->
+          </mat-toolbar>
+        </div>
+
+        <mat-divider class="divider"></mat-divider>
+
+        <div class="sidenagivationpanel">
+          <mat-drawer-container class="example-container" autosize>
+            <mat-drawer #drawer class="sideNav-sidenav" mode="side" opened>
+              <div class="firstButton">
+                <button
+                  class="notesButton"
+                  mat-button
+                  [routerLink]="['/dashboard/notes']"
+                >
+                  <mat-icon class="noteIcon">lightbulb_outline</mat-icon>
+                  <span class="note-label">Notes</span>
+                </button>
+              </div>
+
+              <div class="secondButton">
+                <button
+                  class="remindersButton"
+                  mat-button
+                  [routerLink]="['/dashboard/reminder']"
+                >
+                  <mat-icon class="reminderIcon">notifications_none</mat-icon>
+                  <span class="reminder-label">Reminders</span>
+                </button>
+              </div>
+              <mat-divider class="divider"></mat-divider>
+              <div class="labelsClass"
+              fxLayout="column"
+              fxLayoutAlign="space-around start">
+                <!-- <div class="label">LABELS</div> -->
+
+              <div class="secondButton">
+                <div *ngFor="let label of labelsList">
+                  <button class="remindersButton" mat-button>
+                    <mat-icon fontSet="material-icons-outlined" class="reminderIcon">label</mat-icon>
+                    <span class="reminder-label">{{ label.labelName }}</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="labelsButton">
+                <button class="remindersButton" mat-button (click)="openEditLabelDialog()">
+                  <mat-icon
+                    fontSet="material-icons-outlined"
+                    class="reminderIcon"
+                    >create</mat-icon>
+                  <span class="reminder-label">Edit Labels</span>
+                </button>
+              </div>
+            </div>
+
+              <mat-divider class="divider"></mat-divider>
+
+              <div class="firstButton">
+                <button
+                  class="notesButton"
+                  mat-button
+                  [routerLink]="['/dashboard/archive']"
+                >
+                  <mat-icon fontSet="material-icons-outlined" class="noteIcon"
+                    >archive</mat-icon
+                  >
+                  <span class="note-label">Archive</span>
+                </button>
+              </div>
+
+              <div class="secondButton">
+                <button
+                  class="remindersButton"
+                  [routerLink]="['/dashboard/trash']"
+                >
+                  <mat-icon
+                    fontSet="material-icons-outlined"
+                    class="reminderIcon"
+                    >delete</mat-icon
+                  >
+                  <span class="reminder-label">Bin</span>
+                </button>
+              </div>
+            </mat-drawer>
+            <!-- <app-note></app-note> -->
+
+            <router-outlet></router-outlet>
+          </mat-drawer-container>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

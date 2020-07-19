@@ -1,0 +1,34 @@
+<div>
+  <div><strong>Edit labels</strong></div>
+  <div style="display: flex;">
+      <div style="padding-top: 21px;margin-right: 10px;">
+          <button type="reset" mat-icon-button matTooltip="Cancel" (click)="cancel()">
+              <mat-icon>close</mat-icon>
+          </button>
+      </div>
+      <div>
+          <mat-form-field appearance="fill" style="background-color: white;" autocomplete="off">
+              <!-- <mat-label>Create new label</mat-label> -->
+              <input matInput id="labelName" [(ngModel)]="label.labelName" placeholder="Create new label" style="width: 153px;">
+          </mat-form-field>
+      </div>
+      <div style="padding-top: 21px;">
+          <button mat-icon-button matTooltip="Create label" (click)="createLabel()">
+              <mat-icon>check</mat-icon>
+          </button>
+      </div>
+  </div>
+  <div *ngFor="let label of listLabels">
+      <button mat-icon-button matTooltip="Delete label" (click)="onClickDeleteLabel(label.labelId)">
+          <mat-icon>delete</mat-icon>
+      </button>
+      {{label.labelName}}
+      <button mat-icon-button matTooltip="Rename label">
+          <mat-icon>edit</mat-icon>
+      </button>
+  </div>
+  <mat-divider></mat-divider>
+  <div style="margin-left: 220px;">
+      <button mat-button (click)="onSubmit()">Done</button>
+  </div>
+</div>

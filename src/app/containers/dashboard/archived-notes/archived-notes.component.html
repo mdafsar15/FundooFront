@@ -1,0 +1,57 @@
+<div fxLayout="row" fxLayoutAlign="space-around-center">
+  <link
+    href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+    rel="stylesheet"
+  />
+
+  <div>
+    <div *ngFor="let note of notes" class="noteCard">
+      <mat-card
+        class="mat-elevation-z0 matcard "
+        style="margin-left:90px"
+        autocomplete="off"
+        role="combobox"
+        flex="row"
+     
+        [ngStyle]="{'background-color':note.color}"
+      >
+        <div>
+          <mat-card-title class="content" [ngStyle]="{'background-color':note.color}">
+            <textarea
+              class="textArea"
+              cdkTextareaAutosize
+              #autosize="cdkTextareaAutosize"
+              cdkAutosizeMinRows="1"
+              cdkAutosizeMaxRows="100"
+              placeholder="Title"
+              disabled
+              [ngStyle]="{'background-color':note.color}"
+              >{{ note.title }}</textarea
+            >
+          </mat-card-title>
+          <mat-card-content class="content" [ngStyle]="{'background-color':note.color}">
+            <textarea
+              class="textArea"
+              cdkTextareaAutosize
+              #autosize="cdkTextareaAutosize"
+              cdkAutosizeMinRows="1"
+              cdkAutosizeMaxRows="100"
+              placeholder="Description"
+              disabled
+              [ngStyle]="{'background-color':note.color}"
+              >{{ note.description }}</textarea
+            >
+          </mat-card-content>
+        </div>
+        <!-- <div ng-mouseover="expand=true" ng-init="expand=false"> -->
+        <!-- <div *ngIf="expand">  -->
+          <div class="icon" mat-dialog-actions>
+            <!-- app icon selector -->
+            <app-icon-list class="app-note-list" [note]="note"></app-icon-list>
+            
+          </div>
+        <!-- </div> -->
+      </mat-card>
+    </div>
+  </div>
+</div>

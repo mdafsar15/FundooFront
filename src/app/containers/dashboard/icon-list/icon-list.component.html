@@ -1,0 +1,99 @@
+<mat-card-footer fxLayout="row" fxLayoutAlign="space-around end">
+  <link
+  href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+  rel="stylesheet"
+/>
+  <button mat-icon-button matTooltip="Remind me"  [matMenuTriggerFor]="reminder">
+    <mat-icon fontSet="material-icons-outlined">add_alert</mat-icon>
+  </button>
+  
+  <button mat-icon-button (click)="addCollaborator(note)">
+    <mat-icon fontSet="material-icons-outlined" matTooltip="Collaborator">person_add</mat-icon>
+  </button>
+  <button mat-icon-button matTooltip="Change color" [matMenuTriggerFor]="colorlist">
+    <mat-icon fontSet="material-icons-outlined">palette</mat-icon>
+  </button>
+
+  <mat-menu [ngStyle]="{ 'background-color': white}" #colorlist="matMenu" [overlapTrigger]="false" class="color">
+    <ng-template matMenuContent >
+      <div
+        fxLayout="row"
+        fxLayoutGap="10px"
+        fxLayout="space-around center"
+        style="margin-top: 1px"
+        style="font-size: 18px"
+        *ngFor="let colorsRow of colorsList"
+      >
+        <div *ngFor="let color of colorsRow">
+          <button
+            [ngStyle]="{ 'background-color': color.colorCode }"
+            (click)="changeColor(color)"
+            matTooltip="{{ color.name }}"
+            mat-mini-fab class="mat-elevation-z0"
+          ></button>
+        </div>
+      </div>
+    </ng-template>
+  </mat-menu>
+  
+  <button mat-icon-button >
+    <!-- <input formControlName="document" type="file"  [uploader]="uploader" multiple/> -->
+      <!-- <mat-icon matTooltip="Add image">crop_original</mat-icon> -->
+      <!-- <mat-file-upload [file]="file" > -->
+      <mat-icon matTooltip="Add image" (click)="uploadImage()" >crop_original</mat-icon> 
+    <!-- </mat-file-upload> -->
+    <input id="fileToUpload" type="file" style="display:none;">
+  </button>
+
+  <!-- <button mat-icon-button matTooltip="Add Image">
+    <mat-icon fontSet="material-icons-outlined">crop_original</mat-icon>
+  </button> -->
+  <ng-container *ngIf="!note.archived; else unarchive">
+    <button mat-icon-button matTooltip="Archive" (click)="archive()">
+      <mat-icon fontSet="material-icons-outlined">archive</mat-icon>
+    </button>
+  </ng-container>
+  <ng-template #unarchive>
+    <button mat-icon-button matTooltip="Unarchive" (click)="archive()">
+      <mat-icon fontSet="material-icons-outlined">unarchive</mat-icon>
+    </button>
+  </ng-template>
+
+  <button mat-icon-button [matMenuTriggerFor]="menu" matTooltip="More">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="deleteNote()">
+      Delete Note
+    </button>
+    <button mat-menu-item (click)="openLabel(note)">Add label</button>
+  </mat-menu>
+
+
+  <mat-menu #reminder="matMenu">
+    <div style="margin: 20px;">
+      Reminder:
+    </div>
+  
+    <button class="matmenu" mat-menu-item (click)="today(note)">Later today
+      <span style="margin-left: 100px;">08:00 PM</span>
+    </button>
+  
+    <button class="matmenu" mat-menu-item (click)="tommorrow(note)">Tomorrow
+      <span style="margin-left: 110px;">08:00 AM</span>
+    </button>
+  
+    <button class="matmenu" mat-menu-item (click)="nextWeek(note)">Next week
+      <span style="margin-left: 75px;">Mon, 08:00 AM</span>
+    </button>
+  
+    <button class="matmenu" mat-menu-item (click) = "datePicker(note)">
+      <mat-icon style="font-size: 18px; margin: 1px;">access_time</mat-icon>
+      <span>Pick date & time</span>
+    </button>
+  
+    <button mat-menu-item><mat-icon>place</mat-icon>Pick place</button>
+  </mat-menu>
+
+  
+</mat-card-footer>

@@ -1,0 +1,52 @@
+<!-- <div *ngIf="!isPinned" (click)="pin=!pin">
+    <a><img src="assets/images/unpin.svg" id="pin" (click)="onPinNote(note.n_id)" style="margin-left: 230px;"></a>
+</div>
+ <div *ngIf="isPinned" (click)="isPinned=!isPinned">
+    <a><img src="assets/images/pinned.svg" id="pin" (click)="onPinNote(note.n_id)" style="margin-left: 230px;"></a>
+</div>   -->
+
+ <!-- <div class="pin-unpin-div" *ngIf="!note.isTrashed" fxLayout="column" fxLayoutAlign="start end">
+    <button mat-icon-button>
+      <img
+        id="pin"
+        src="assets/images/unpin.svg"
+        *ngIf="!note.pinned; else pinnedNote"
+        (click)="onPinNote()"
+        style="
+        margin-left: 23px;
+        margin-top: -28px;
+    "/>
+    </button>
+    <ng-template #pinnedNote>
+      <button mat-icon-button>
+        <img id="pin" src="assets/images/pinned.svg" (click)="onPinNote()" style="
+        margin-left: 23px;
+        margin-top: -28px;
+    "/>
+      </button>
+    </ng-template>
+</div> -->
+
+
+<div *ngIf="!note.isPinned" class="pin-div">
+  <button mat-icon-button class="pin" (click)="pinNote()">
+    <mat-icon matTooltip="pin note">
+      <img src="assets/images/unpin.svg" style="width: 25px;height: 25px;" [ngStyle]="{ 'background-color': note.color }">
+    </mat-icon>
+  </button>
+</div>
+<div *ngIf="note.isPinned" class="pin-div">
+  <button mat-icon-button class="pin" (click)="pinNote()">
+    <mat-icon matTooltip="unpin note">
+      <img src="assets/images/pinned.svg" style="width: 25px;height: 25px;">
+    </mat-icon>
+  </button>
+</div> 
+
+
+
+
+
+
+
+
